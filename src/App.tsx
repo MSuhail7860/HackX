@@ -42,7 +42,7 @@ function App() {
                     <div className="w-8 h-8 rounded bg-gradient-to-br from-red-600 to-orange-600 flex items-center justify-center font-bold text-white shadow-lg shadow-red-900/40">
                         <Zap size={18} fill="currentColor" />
                     </div>
-                    <h1 className="text-xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-gray-100 to-gray-500">RIFT <span className="font-light text-red-500">ENGINE</span></h1>
+                    <h1 className="text-xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-gray-100 to-gray-500">HACK <span className="font-light text-red-500">X</span></h1>
                 </div>
 
                 <div className="flex items-center gap-4">
