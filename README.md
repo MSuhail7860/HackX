@@ -1,54 +1,80 @@
-HackX Intelligence
-HackX Intelligence is a high-performance financial forensic platform designed to identify complex money laundering rings and fraudulent transaction patterns using advanced graph theory and temporal analysis. It provides investigators with a "Financial Crime Forensic Unit" dashboard to visualize, analyze, and dismantle illicit financial flows in real-time.
 
-Core Features
-1. Advanced Detection Engine
-The platform utilizes a custom AnalysisEngine that processes transaction data through several specialized algorithms:
+# HACK<span style="color:#ef4444">X</span> | Financial Crime Forensic Unit
 
-Recursive Cycle Detection: Uses Depth-Limited Search (DLS) to identify circular fund movements (e.g., A → B → C → A) where money eventually returns to the original sender.
+![Version](https://img.shields.io/badge/version-2.0.4-blue.svg?style=for-the-badge)
+![Status](https://img.shields.io/badge/system-LIVE-green.svg?style=for-the-badge)
+![Tech](https://img.shields.io/badge/tech-React_Vite_Tailwind-38bdf8.svg?style=for-the-badge)
 
-Smurfing (Structuring) Analysis: Monitors "Fan-in" and "Fan-out" patterns to detect when multiple small transfers are consolidated or dispersed within a strict 72-hour window.
+A military-grade, graph-based financial crime detection terminal designed for forensic analysts. **HackX** visualizes complex transaction networks to identify Money Laundering Rings, Smurfing Patterns, and Shell Companies in real-time.
 
-Layered Shell Identification: Detects chains of "shell" accounts—nodes characterized by very low transaction counts (typically ≤ 3) used solely to pass funds through the network.
+---
 
-High-Volume Whitelisting: Implements a control mechanism to exclude legitimate high-volume merchants from being flagged as fraud hubs, reducing false positives.
+## 🚀 **System Capabilities**
 
-2. Interactive Forensic Dashboard
-The user interface is built for deep-dive investigations with a modern, "cyber-forensic" aesthetic:
+### 1. **Graph-Based Forensics**
+*   **Force-Directed Layout**: Interactive visualization of accounts (nodes) and transactions (edges).
+*   **Risk Heatmap**: Nodes dynamically colored by risk score (Critical: Red, Warning: Yellow, Safe: Green).
+*   **Temporal Scrubbing**: Time-travel slider to filter transactions within specific windows (e.g., "72h flow analysis").
 
-Network Topology Visualization: An interactive 2D force-graph that highlights accounts by risk level—Critical (Red), Warning (Yellow), or Clear (Green).
+### 2. **Advanced Detection Algorithms (DLS-Depth-5)**
+The engine automatically flags suspicious patterns:
+*   🔴 **Cycle Detection**: Identifies circular money flows (A -> B -> C -> A).
+*   🟠 **Fan-In / Fan-Out**: Detects mule accounts aggregating funds or dispersing illicit proceeds.
+*   🟣 **Shell Company Structuring**: Flags low-volume, high-frequency "layering" behavior.
 
-Temporal Scrubbing: A time-range slider that allows users to "scrub" through history to observe how transaction patterns and fraud rings evolved chronologically.
+### 3. **High-Fidelity Terminal UI**
+*   **Bento Grid Architecture**: Dense, data-rich layout with Metrics, Graph, and Data Tables.
+*   **Glassmorphism 2.0**: `backdrop-blur-xl` panels with obsidian backgrounds (`#020617`).
+*   **Interactive Details**: Sidebar overlay with transaction velocity histograms and centrality metrics.
 
-Explainable AI (Reasoning): Rather than just flagging an account, the system provides specific reasoning (e.g., "Abnormal transaction density detected within 72h window") for every detected ring.
+---
 
-3. Reporting & Compliance
-RIFT 2026 Schema: Exportable forensic reports generated in JSON format that follow strict regulatory reporting standards.
+## 🛠 **Installation & Deployment**
 
-System Summary: Real-time metrics on total transactions, volume analyzed, and critical threats detected.
+### **Prerequisites**
+*   Node.js v18+
+*   npm v9+
 
-Technical Stack
-Frontend: React 19, Vite, Tailwind CSS.
+### **Setup Protocol**
+```bash
+# 1. Clone the repository
+git clone https://github.com/your-username/HackX.git
 
-Visualization: react-force-graph-2d for network rendering.
+# 2. Enter the secure environment
+cd HackX
 
-Analysis Engine: Custom TypeScript engine for graph traversal and pattern matching.
-
-Database: PostgreSQL with Prisma ORM, optimized for recursive queries and pattern detection.
-
-Icons: Lucide-React.
-
-Getting Started
-Clone the Repository:
-
-Bash
-git clone https://github.com/msuhail7860/hackx.git
-Install Dependencies:
-
-Bash
+# 3. Install core dependencies
 npm install
-Run Development Server:
 
-Bash
+# 4. Initialize the forensic engine
 npm run dev
-Analyze Data: Upload a .csv transaction file or click "Load Demo" to see the engine in action.
+```
+
+The terminal will launch at `http://localhost:5173`.
+
+---
+
+## 🖥 **Usage Intelligence**
+
+1.  **Ingest Data**: Drag & Drop a CSV file containing transaction logs.
+2.  **Analyze Topology**:
+    *   **Zoom/Pan**: Explore the graph network.
+    *   **Click Node**: Open the "Suspect Profile" sidebar.
+    *   **Scrub Time**: Use the bottom slider to narrow down specific timestamps.
+3.  **Investigate Rings**:
+    *   Select a detected ring from the right-hand table.
+    *   The graph will auto-focus and highlight the specific ring members.
+4.  **Export Report**: Click "EXPORT REPORT" in the header to download a JSON case file.
+
+---
+
+## 🏗 **Architecture**
+
+*   **Frontend**: React 18, Vite, TypeScript
+*   **Styling**: Tailwind CSS, Lucide Icons
+*   **Visualization**: `react-force-graph-2d`
+*   **Logic**: Custom `Deep Link Search (DLS)` Algorithm
+
+---
+
+> _"In the digital age, follow the money, find the ghost."_
