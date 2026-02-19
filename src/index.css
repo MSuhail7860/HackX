@@ -77,4 +77,23 @@
   .box-glow {
     box-shadow: 0 0 15px rgba(56, 189, 248, 0.1);
   }
+
+  .rift-blue-btn {
+    @apply bg-gradient-to-r from-blue-600 to-blue-500 text-white border border-blue-400/50;
+    box-shadow: 0 0 15px rgba(37, 99, 235, 0.3);
+    transition: all 0.3s ease;
+  }
+
+  .rift-blue-btn:hover {
+    @apply scale-[1.02];
+    box-shadow: 0 0 25px rgba(37, 99, 235, 0.6);
+  }
+
+  .dashboard-card {
+    @apply bg-slate-950/40 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl transition-all duration-300;
+  }
+
+  .dashboard-card:hover {
+    @apply scale-[1.02] border-white/20;
+  }
 }

@@ -118,26 +118,6 @@ function App() {
                 <div className="flex items-center gap-4">
                     {data ? (
                         <div className="flex items-center gap-3">
-                            {/* Summary Metrics Bar */}
-                            <div className="flex items-center gap-6 mr-6">
-                                <div className="text-right">
-                                    <p className="text-[9px] text-gray-500 uppercase tracking-widest font-semibold">Total Txs</p>
-                                    <p className="font-mono text-sm text-white font-bold">{data.summary.total_transactions.toLocaleString()}</p>
-                                </div>
-                                <div className="text-right">
-                                    <p className="text-[9px] text-gray-500 uppercase tracking-widest font-semibold">Volume</p>
-                                    <p className="font-mono text-sm text-blue-400 font-bold drop-shadow-[0_0_8px_rgba(56,189,248,0.5)]">
-                                        {new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', notation: 'compact' }).format(data.summary.total_volume)}
-                                    </p>
-                                </div>
-                                <div className="text-right">
-                                    <p className="text-[9px] text-gray-500 uppercase tracking-widest font-semibold">Risks</p>
-                                    <p className="font-mono text-sm text-red-500 font-bold drop-shadow-[0_0_8px_rgba(239,68,68,0.5)]">
-                                        {data.summary.suspicious_accounts_flagged}
-                                    </p>
-                                </div>
-                            </div>
-
                             <button
                                 onClick={() => setData(null)}
                                 className="px-4 py-1.5 text-xs font-medium text-gray-400 hover:text-white transition-colors border border-gray-800 hover:border-gray-600 rounded bg-gray-900/50"
@@ -146,7 +126,7 @@ function App() {
                             </button>
                             <button
                                 onClick={handleDownload}
-                                className="px-4 py-1.5 text-xs font-bold bg-blue-600/20 text-blue-400 border border-blue-500/50 rounded hover:bg-blue-600/30 flex items-center gap-2 transition-all shadow-[0_0_10px_rgba(37,99,235,0.2)] hover:shadow-[0_0_15px_rgba(37,99,235,0.4)]"
+                                className="px-4 py-1.5 text-xs font-bold rounded flex items-center gap-2 rift-blue-btn"
                             >
                                 <Download size={14} />
                                 EXPORT REPORT
@@ -165,9 +145,9 @@ function App() {
             </header>
 
             {/* Main Content Area */}
-            <main className="flex-1 mt-14 p-4 overflow-hidden flex gap-4">
+            <main className="flex-1 mt-14 p-4 overflow-hidden relative z-0">
                 {isAnalyzing ? (
-                    <div className="flex-1 flex flex-col items-center justify-center relative">
+                    <div className="flex-1 flex flex-col items-center justify-center h-full">
                         {/* Terminal Loader */}
                         <div className="w-[400px] h-[200px] bg-slate-950/80 border border-white/10 rounded-lg p-4 font-mono text-xs text-green-400 shadow-2xl backdrop-blur-md flex flex-col">
                             <div className="flex items-center gap-2 border-b border-white/5 pb-2 mb-2 text-gray-500">
@@ -189,17 +169,17 @@ function App() {
                         </div>
                     </div>
                 ) : !data ? (
-                    <div className="flex-1 flex flex-col items-center justify-center p-8 animate-in fade-in duration-700">
+                    <div className="flex-1 flex flex-col items-center justify-center p-8 animate-in fade-in duration-700 h-full">
                         <div className="text-center mb-16 max-w-3xl">
-                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] font-mono text-blue-400 mb-6">
+                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] font-mono text-blue-400 mb-6 box-glow">
                                 <span className="relative flex h-2 w-2">
                                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
                                     <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
                                 </span>
                                 NEXT-GEN FORENSICS
                             </div>
-                            <h2 className="text-6xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white via-gray-200 to-gray-600 mb-6 drop-shadow-2xl tracking-tight">
-                                FINANCIAL CRIME<br />INTELLIGENCE
+                            <h2 className="text-7xl font-black text-white mb-6 drop-shadow-[0_0_15px_rgba(255,255,255,0.1)] tracking-tighter">
+                                HACK<span className="text-red-500">X</span> INTELLIGENCE
                             </h2>
                             <p className="text-xl text-gray-400 font-light max-w-2xl mx-auto leading-relaxed">
                                 Identify <span className="text-red-400 font-medium">Laundering Rings</span>, monitor <span className="text-blue-400 font-medium">Temporal Flows</span>, and dismantle <span className="text-purple-400 font-medium">Shell Networks</span> with military-grade graph analysis.
@@ -208,12 +188,64 @@ function App() {
                         <FileUpload onFileUpload={handleFileUpload} />
                     </div>
                 ) : (
-                    <>
+                    <div className="flex gap-4 h-full">
+
                         {/* LEFT COL: Analysis & Graph */}
                         <div className="flex-1 flex flex-col gap-4 min-w-0">
+
+                            {/* Row 1: Metrics (Stat Pills) */}
+                            <div className="grid grid-cols-4 gap-4">
+                                {/* M1: Total Txs */}
+                                <div className="relative group overflow-hidden bg-slate-950/40 backdrop-blur-xl border border-white/10 p-3 rounded-xl shadow-2xl transition-all duration-300 hover:scale-[1.02] hover:border-blue-500/30">
+                                    <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-blue-500/50 to-transparent"></div>
+                                    <p className="text-[10px] font-mono tracking-widest text-slate-500 uppercase flex items-center gap-2">
+                                        <Zap size={10} className="text-blue-500" /> Total Txs
+                                    </p>
+                                    <h3 className="text-xl font-bold text-white text-glow mt-1">{data.summary.total_transactions.toLocaleString()}</h3>
+                                </div>
+
+                                {/* M2: Volume */}
+                                <div className="relative group overflow-hidden bg-slate-950/40 backdrop-blur-xl border border-white/10 p-3 rounded-xl shadow-2xl transition-all duration-300 hover:scale-[1.02] hover:border-green-500/30">
+                                    <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-green-500/50 to-transparent"></div>
+                                    <p className="text-[10px] font-mono tracking-widest text-slate-500 uppercase flex items-center gap-2">
+                                        <RefreshCw size={10} className="text-green-500" /> Volume
+                                    </p>
+                                    <h3 className="text-xl font-bold text-white text-glow mt-1">
+                                        {new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', notation: 'compact' }).format(data.summary.total_volume)}
+                                    </h3>
+                                </div>
+
+                                {/* M3: Risks */}
+                                <div className="relative group overflow-hidden bg-slate-950/40 backdrop-blur-xl border border-white/10 p-3 rounded-xl shadow-2xl transition-all duration-300 hover:scale-[1.02] hover:border-red-500/30">
+                                    <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-red-500/50 to-transparent"></div>
+                                    <p className="text-[10px] font-mono tracking-widest text-slate-500 uppercase flex items-center gap-2">
+                                        <UploadIcon size={10} className="text-red-500" /> Threats
+                                    </p>
+                                    <div className="flex items-end gap-2 mt-1">
+                                        <h3 className="text-xl font-bold text-red-500 drop-shadow-[0_0_8px_rgba(239,68,68,0.5)]">{data.summary.suspicious_accounts_flagged}</h3>
+                                        <span className="text-[9px] text-red-400 font-mono mb-1. opacity-70">CRITICAL</span>
+                                    </div>
+                                </div>
+
+                                {/* M4: Whitelisted */}
+                                <div className="relative group overflow-hidden bg-slate-950/40 backdrop-blur-xl border border-white/10 p-3 rounded-xl shadow-2xl transition-all duration-300 hover:scale-[1.02] hover:border-purple-500/30">
+                                    <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-purple-500/50 to-transparent"></div>
+                                    <p className="text-[10px] font-mono tracking-widest text-slate-500 uppercase flex items-center gap-2">
+                                        <Zap size={10} className="text-purple-500" /> Verified
+                                    </p>
+                                    <h3 className="text-xl font-bold text-white text-glow mt-1">{data.summary.total_whitelisted_accounts}</h3>
+                                </div>
+                            </div>
+
                             {/* Main Graph Card */}
-                            <div className="flex-1 bg-slate-900/40 backdrop-blur-md rounded-xl border border-white/5 overflow-hidden relative shadow-2xl group">
-                                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-600/0 via-blue-600/50 to-blue-600/0 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                            <div className="flex-1 bg-slate-900/40 backdrop-blur-xl rounded-2xl border border-white/5 overflow-hidden relative shadow-2xl group min-h-0">
+                                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-600/0 via-blue-600/50 to-blue-600/0 opacity-0 group-hover:opacity-100 transition-opacity z-10"></div>
+
+                                <div className="absolute top-4 left-4 z-10 flex flex-col gap-1 pointer-events-none">
+                                    <h3 className="text-xs font-bold text-white tracking-widest uppercase">Network Topology</h3>
+                                    <p className="text-[9px] text-gray-500">Live Visualization • DLS-Depth-5</p>
+                                </div>
+
                                 <GraphView
                                     nodes={data.suspicious_accounts}
                                     links={data.transactions}
@@ -245,8 +277,9 @@ function App() {
 
                         {/* RIGHT COL: Sidebar Data (Bento Layout) */}
                         <div className="w-[450px] flex flex-col gap-4">
+
                             {/* Top Right: Pattern List / Ring Table */}
-                            <div className="flex-1 bg-slate-900/40 backdrop-blur-md rounded-xl border border-white/5 overflow-hidden shadow-xl flex flex-col">
+                            <div className={`flex flex-col bg-slate-900/40 backdrop-blur-xl rounded-2xl border border-white/5 overflow-hidden shadow-xl transition-all duration-300 ${selectedNode ? 'h-[250px]' : 'flex-1'}`}>
                                 <FraudRingTable
                                     rings={data.fraud_rings}
                                     onRingSelect={(id) => setFocusedRingId(id === focusedRingId ? null : id)}
@@ -256,14 +289,14 @@ function App() {
 
                             {/* Bottom Right: Selection Details (Conditional) */}
                             {selectedNode ? (
-                                <div className="h-[500px] bg-slate-900/40 backdrop-blur-md rounded-xl border border-white/5 overflow-hidden shadow-xl">
+                                <div className="flex-1 bg-slate-900/40 backdrop-blur-xl rounded-2xl border border-white/5 overflow-hidden shadow-xl min-h-0">
                                     <Sidebar
                                         node={selectedNode}
                                         onClose={() => setSelectedNode(null)}
                                     />
                                 </div>
                             ) : (
-                                <div className="h-[200px] bg-slate-900/40 backdrop-blur-md rounded-xl border border-white/5 flex items-center justify-center text-gray-600 border-dashed">
+                                <div className="h-[200px] bg-slate-900/40 backdrop-blur-xl rounded-2xl border border-white/5 flex items-center justify-center text-gray-600 border-dashed">
                                     <div className="text-center">
                                         <Zap className="mx-auto mb-2 opacity-20" size={32} />
                                         <p className="text-xs uppercase tracking-widest">Select a Node</p>
@@ -271,7 +304,7 @@ function App() {
                                 </div>
                             )}
                         </div>
-                    </>
+                    </div>
                 )}
             </main>
         </div>
