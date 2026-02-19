@@ -1,5 +1,5 @@
 
-import { AnalysisResult, Transaction } from '../types';
+import { AnalysisResult, Transaction } from '../types/index';
 import { AnalysisEngine } from '../engine/AnalysisEngine';
 
 export const generateMockTransactions = (count: number = 1000): Transaction[] => {

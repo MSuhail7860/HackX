@@ -26,7 +26,7 @@ export default {
                 destructive: "hsl(var(--destructive))",
                 "destructive-foreground": "hsl(var(--destructive-foreground))",
 
-                // Custom RIFT Colors
+                // Custom HackX Colors
                 'rift-red': '#ff0033',
                 'rift-orange': '#ff6600',
                 'rift-yellow': '#ffcc00',
