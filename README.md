@@ -70,7 +70,7 @@ The terminal will launch at `http://localhost:5173`.
 
 ## 🏗 **Architecture**
 
-*   **Frontend**: React 18, Vite, TypeScript
+*   **Frontend**: React 19, Vite, TypeScript
 *   **Styling**: Tailwind CSS, Lucide Icons
 *   **Visualization**: `react-force-graph-2d`
 *   **Logic**: Custom `Deep Link Search (DLS)` Algorithm
